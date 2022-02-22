@@ -33,7 +33,7 @@ class App extends React.Component {
   
 render(){
   // console.log(process.env.REACT_APP_LOCATIONIQ_API_KEY)
-  let cityMap = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}&zoom=10`;
+  let cityMap = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}&zoom=14`;
   
 
   return(

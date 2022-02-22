@@ -1,0 +1,16 @@
+*{
+  text-align: center;
+  background-color: aliceblue;
+ 
+}
+
+h1{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 4vw;
+  margin:5%
+}
+
+.card {
+  margin:auto;
+ margin-top: 5%
+}

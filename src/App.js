@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import Card from 'react-bootstrap/Card';
+import "./App.css"
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 class App extends React.Component {
   constructor(props){
@@ -39,13 +42,13 @@ render(){
   return(
     <>
       <h1> City Explorer 4</h1>
-      <form onSubmit={this.getCityData}>
-        <label>
-          <input type="text" onInput={this.handleCityInput}/>
-        </label>
-          <button type="submit">Explore!</button>
-      </form>
-      <Card style={{ width: '18rem' }}>
+      <Form onSubmit={this.getCityData}>
+        <Form.Label>
+          <Form.Control type="text" onInput={this.handleCityInput}/>
+        </Form.Label>
+          <Button type="submit">Explore!</Button>
+      </Form>
+      <Card style={{ width: '40rem' }}>
       {
         this.state.cityData.lat 
         ?

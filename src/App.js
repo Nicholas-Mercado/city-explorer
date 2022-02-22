@@ -33,7 +33,7 @@ class App extends React.Component {
     this.setState({
       cityData: cityData.data[0] })
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       
       this.setState({
         error:true,

@@ -48,7 +48,7 @@ render(){
         </Form.Label>
           <Button type="submit">Explore!</Button>
       </Form>
-      <Card style={{ width: '40rem' }}>
+      <Card style={{ width: '36rem' }}>
       {
         this.state.cityData.lat 
         ?

@@ -1,25 +1,56 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import axios from 'axios';
+import Card from 'react-bootstrap/Card';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      city: '',
+      cityData: {}
+    }
+  }
+
+  handleCityInput = (e) => {
+    e.preventDefault();
+    this.setState({
+      city: e.target.value
+    })
+  };
+  
+  getCityData = async (e) => {
+    e.preventDefault();
+    let cityData = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`);
+    this.setState({
+      cityData: cityData.data[0]
+    })
+    console.log(cityData.data[0]);
+  }
+render(){
+  // console.log(process.env.REACT_APP_LOCATIONIQ_API_KEY)
+  return(
+    <>
+      <h1> City Explorer 4</h1>
+      <form onSubmit={this.getCityData}>
+        <label>
+          <input type="text" onInput={this.handleCityInput}/>
+        </label>
+          <button type="submit">Explore!</button>
+      </form>
+      <Card style={{ width: '18rem' }}>
+        <Card.Img variant="top" src="" />
+          <Card.Body>
+          <Card.Title>{this.state.cityData.display_name}</Card.Title>
+          <Card.Text>{this.state.cityData.lon}</Card.Text>
+          <Card.Text>{this.state.cityData.lat}</Card.Text>
+        </Card.Body>
+      </Card>
+    </>
+  )
 }
+};
 
 export default App;
+
+
+

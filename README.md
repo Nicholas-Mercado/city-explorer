@@ -29,12 +29,34 @@ Bootstrap
 
 ## Credit and Collaborations
 
-## Name of feature: Location IQ
+## Feature times
 
-Estimate of time needed to complete: 3 ½ hr
+### Name of feature: Setup Location IQ
 
-Start time: 1:40 pm
+Estimate of time needed to complete: 2 ½ hr
 
-Finish time: 8:30
+Start time: 1:30 pm
+
+Finish time: 4:30
+
+Actual time needed to complete: 3 hrs
+
+### Name of feature: Map
+
+Estimate of time needed to complete: 2 hr
+
+Start time: 4:50
+
+Finish time: 7:30
+
+Actual time needed to complete: 3 hrs
+
+### Name of feature: Errors
+
+Estimate of time needed to complete: 2 hr
+
+Start time: 730 
+
+Finish time: 9
 
 Actual time needed to complete: 7 hrs

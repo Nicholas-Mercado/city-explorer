@@ -1,5 +1,7 @@
 # Lab 06 - Asynchronous code, and APIs
 
+[Deployed Site](https://city-explorer-4.netlify.app/)
+
 **Author**: Nicholas Mercado
 **Version**: 1.0.0 initial commit
 
@@ -60,3 +62,5 @@ Start time: 730
 Finish time: 9
 
 Actual time needed to complete: 7 hrs
+
+![WRRC](/wrrc_response_cycle.JPG)

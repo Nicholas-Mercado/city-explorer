@@ -11,7 +11,6 @@ render(){
       
       <Card>
         <Card.Body>
-          <Card.Title> {this.props.city}</Card.Title>
           <Card.Text>{this.props.cityWeather.date}</Card.Text>
           <Card.Text>{this.props.cityWeather.description}</Card.Text>
         </Card.Body>    

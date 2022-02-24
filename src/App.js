@@ -33,8 +33,8 @@ class App extends React.Component {
     
   try {
     let cityData = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`);
-                                       //http://localhost:3001/weather?searchQuery=Paris
-    let cityWeather = await axios.get(`http://localhost:3001/weather?searchQuery=${this.state.city}`);
+    
+    let cityWeather = await axios.get(`${process.env.REACT_APP_SERVER}/weather?searchQuery=${this.state.city}`);
     console.log(cityWeather);
     this.setState({
       cityWeather: cityWeather.data,
@@ -55,7 +55,7 @@ class App extends React.Component {
 render(){
   console.log(this.state.cityWeather);
   let cityMap = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}&zoom=14`;
-  
+  console.log("app state" ,this.state)
   return(
     <>
       <h1> City Explorer 4</h1>

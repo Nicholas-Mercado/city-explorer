@@ -17,6 +17,7 @@ class App extends React.Component {
       error: false,
       errorMessage: '',
       cityWeather:[],
+      cityMovie:[],
     }
     // console.log(this.state);
   }
@@ -45,15 +46,14 @@ class App extends React.Component {
       })
     }
 
-    // check if this is in the right place
     this.handleWeather();
+    this.handleMovie();
   }
-  // check get request
   handleWeather = async () => {
   try {    
    
     let cityWeather = await axios.get(`${process.env.REACT_APP_SERVER}/weather?lat=${this.state.cityData.lat}&lon=${this.state.cityData.lon}`);
-    console.log(cityWeather);
+    // console.log(cityWeather);
     this.setState({
       cityWeather: cityWeather.data,
     })
@@ -66,11 +66,29 @@ class App extends React.Component {
     }
   }
 
+  handleMovie = async () => {
+    try {             
+      // changed queary to searchQueary
+      let cityMovie = await axios.get(`${process.env.REACT_APP_SERVER}/movies?searchQuery=${this.state.city}`);
+      console.log(cityMovie);
+      this.setState({
+        cityMovie: cityMovie.data,
+      })
+      
+      } catch (error) {
+        this.setState({
+          error:true,
+          errorMessage: `You have a Error: ${error.response.status}` 
+        })
+  
+      }
+    }
+
 
 render(){
   // console.log(this.state.cityWeather);
   let cityMap = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}&zoom=14`;
-  // console.log("app state" ,this.state)
+  // console.log("app state" ,this.state);
   return(
     <>
       <h1> City Explorer 4</h1>

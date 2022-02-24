@@ -53,6 +53,7 @@ class App extends React.Component {
   try {    
     // key test                                                                          
     let cityWeather = await axios.get(`http://localhost:3001/weather?lat=${this.state.cityData.lat}&lon=${this.state.cityData.lon}`);
+                                // something is wrong with right here
     // let cityWeather = await axios.get(`${process.env.REACT_APP_SERVER}/weather?lat=${this.state.cityData.lat}&lon=${this.state.cityData.lon}`);
     // console.log(cityWeather);
     this.setState({

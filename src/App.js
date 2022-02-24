@@ -34,15 +34,31 @@ class App extends React.Component {
   try {
     let cityData = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`);
     
-    let cityWeather = await axios.get(`${process.env.REACT_APP_SERVER}/weather?searchQuery=${this.state.city}`);
-    console.log(cityWeather);
     this.setState({
-      cityWeather: cityWeather.data,
       cityData: cityData.data[0] 
     })
     } catch (error) {
-      // console.log(error);
-      
+
+      this.setState({
+        error:true,
+        errorMessage: `You have a Error: ${error.response.status}` 
+      })
+    }
+
+    // check if this is in the right place
+    this.handleWeather();
+  }
+  // check get request
+  handleWeather = async () => {
+  try {    
+    // key test                                                                          
+    let cityWeather = await axios.get(`http://localhost:3001/weather?lat=${this.state.cityData.lat}&lon=${this.state.cityData.lon}`);
+    // let cityWeather = await axios.get(`${process.env.REACT_APP_SERVER}/weather?lat=${this.state.cityData.lat}&lon=${this.state.cityData.lon}`);
+    // console.log(cityWeather);
+    this.setState({
+      cityWeather: cityWeather.data,
+    })
+    } catch (error) {
       this.setState({
         error:true,
         errorMessage: `You have a Error: ${error.response.status}` 
@@ -53,9 +69,9 @@ class App extends React.Component {
 
 
 render(){
-  console.log(this.state.cityWeather);
+  // console.log(this.state.cityWeather);
   let cityMap = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}&zoom=14`;
-  console.log("app state" ,this.state)
+  // console.log("app state" ,this.state)
   return(
     <>
       <h1> City Explorer 4</h1>
@@ -87,10 +103,11 @@ render(){
       </Card>
       }
       <Row xs={1} sm={2} md={3} lg={3} className="mt-5">
+      {/* can i cahnge day to cityWeather */}
               {this.state.cityWeather.map((day, index) => (
                 <Col key={index}>
                   <Weather 
-                  cityWeather={day}
+                    cityWeather={day}
                     city={this.state.city}
                     />
                 </Col>

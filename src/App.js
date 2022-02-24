@@ -5,6 +5,7 @@ import "./App.css"
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Weather from './Weather';
+import Movie from './Movie';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
@@ -19,7 +20,6 @@ class App extends React.Component {
       cityWeather:[],
       cityMovie:[],
     }
-    // console.log(this.state);
   }
   
   handleCityInput = (e) => {
@@ -70,7 +70,7 @@ class App extends React.Component {
     try {             
       // changed queary to searchQueary
       let cityMovie = await axios.get(`${process.env.REACT_APP_SERVER}/movies?searchQuery=${this.state.city}`);
-      console.log(cityMovie);
+      // console.log(cityMovie);
       this.setState({
         cityMovie: cityMovie.data,
       })
@@ -86,9 +86,8 @@ class App extends React.Component {
 
 
 render(){
-  // console.log(this.state.cityWeather);
   let cityMap = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}&zoom=14`;
-  // console.log("app state" ,this.state);
+  console.log("app state" ,this.state);
   return(
     <>
       <h1> City Explorer 4</h1>
@@ -119,12 +118,21 @@ render(){
         </Card.Body>
       </Card>
       }
-      <Row xs={1} sm={2} md={3} lg={3} className="mt-5">
-      {/* can i cahnge day to cityWeather */}
-              {this.state.cityWeather.map((day, index) => (
+            <Row xs={1} sm={2} md={3} lg={3} className="mt-5">
+              {this.state.cityWeather.map((cityWeather, index) => (
                 <Col key={index}>
                   <Weather 
-                    cityWeather={day}
+                    cityWeather={cityWeather}
+                    city={this.state.city}
+                    />
+                </Col>
+              ))}
+            </Row> 
+            <Row xs={1} sm={2} md={3} lg={3} className="mt-5">
+              {this.state.cityMovie.map((cityMovie, index) => (
+                <Col key={index}>
+                  <Movie 
+                    cityMovie={cityMovie}
                     city={this.state.city}
                     />
                 </Col>

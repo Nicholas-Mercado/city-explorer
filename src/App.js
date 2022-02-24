@@ -5,6 +5,7 @@ import "./App.css"
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Weather from './Weather';
+import Movie from './Movie';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
@@ -17,8 +18,8 @@ class App extends React.Component {
       error: false,
       errorMessage: '',
       cityWeather:[],
+      cityMovie:[],
     }
-    // console.log(this.state);
   }
   
   handleCityInput = (e) => {
@@ -34,15 +35,29 @@ class App extends React.Component {
   try {
     let cityData = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`);
     
-    let cityWeather = await axios.get(`${process.env.REACT_APP_SERVER}/weather?searchQuery=${this.state.city}`);
-    console.log(cityWeather);
     this.setState({
-      cityWeather: cityWeather.data,
       cityData: cityData.data[0] 
     })
     } catch (error) {
-      // console.log(error);
-      
+
+      this.setState({
+        error:true,
+        errorMessage: `You have a Error: ${error.response.status}` 
+      })
+    }
+
+    this.handleWeather();
+    this.handleMovie();
+  }
+  handleWeather = async () => {
+  try {    
+   
+    let cityWeather = await axios.get(`${process.env.REACT_APP_SERVER_LIVE}/weather?lat=${this.state.cityData.lat}&lon=${this.state.cityData.lon}`);
+    // console.log(cityWeather);
+    this.setState({
+      cityWeather: cityWeather.data,
+    })
+    } catch (error) {
       this.setState({
         error:true,
         errorMessage: `You have a Error: ${error.response.status}` 
@@ -51,11 +66,28 @@ class App extends React.Component {
     }
   }
 
+  handleMovie = async () => {
+    try {             
+      
+      let cityMovie = await axios.get(`${process.env.REACT_APP_SERVER_LIVE}/movies?searchQuery=${this.state.city}`);
+      // console.log(cityMovie);
+      this.setState({
+        cityMovie: cityMovie.data,
+      })
+      
+      } catch (error) {
+        this.setState({
+          error:true,
+          errorMessage: `You have a Error: ${error.response.status}` 
+        })
+  
+      }
+    }
+
 
 render(){
-  console.log(this.state.cityWeather);
   let cityMap = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}&zoom=14`;
-  console.log("app state" ,this.state)
+  // console.log("app state" ,this.state);
   return(
     <>
       <h1> City Explorer 4</h1>
@@ -86,11 +118,21 @@ render(){
         </Card.Body>
       </Card>
       }
-      <Row xs={1} sm={2} md={3} lg={3} className="mt-5">
-              {this.state.cityWeather.map((day, index) => (
+            <Row xs={1} sm={2} md={3} lg={3} className="mt-5">
+              {this.state.cityWeather.map((cityWeather, index) => (
                 <Col key={index}>
                   <Weather 
-                  cityWeather={day}
+                    cityWeather={cityWeather}
+                    city={this.state.city}
+                    />
+                </Col>
+              ))}
+            </Row> 
+            <Row xs={1} sm={2} md={3} lg={3} className="mt-5">
+              {this.state.cityMovie.map((cityMovie, index) => (
+                <Col key={index}>
+                  <Movie 
+                    cityMovie={cityMovie}
                     city={this.state.city}
                     />
                 </Col>

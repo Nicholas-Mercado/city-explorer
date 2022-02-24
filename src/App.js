@@ -68,7 +68,7 @@ class App extends React.Component {
 
   handleMovie = async () => {
     try {             
-      // changed queary to searchQueary
+      
       let cityMovie = await axios.get(`${process.env.REACT_APP_SERVER}/movies?searchQuery=${this.state.city}`);
       // console.log(cityMovie);
       this.setState({
@@ -87,7 +87,7 @@ class App extends React.Component {
 
 render(){
   let cityMap = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}&zoom=14`;
-  console.log("app state" ,this.state);
+  // console.log("app state" ,this.state);
   return(
     <>
       <h1> City Explorer 4</h1>

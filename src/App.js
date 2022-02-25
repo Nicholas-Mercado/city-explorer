@@ -4,10 +4,8 @@ import "./App.css"
 import Map from './Map';
 import Weather from './Weather';
 import Input from './Input';
-import Movie from './Movie';
+import Movies from './Movies';
 import Header from './Header';
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 class App extends React.Component {
   constructor(props){
@@ -101,16 +99,10 @@ render(){
         cityWeather = {this.state.cityWeather}
         city={this.state.city}
        />      
-            <Row xs={1} sm={2} md={3} lg={3} className="mt-5">
-              {this.state.cityMovie.map((cityMovie, index) => (
-                <Col key={index}>
-                  <Movie 
-                    cityMovie={cityMovie}
-                    city={this.state.city}
-                    />
-                </Col>
-              ))}
-            </Row> 
+       <Movies
+        cityMovie ={this.state.cityMovie}
+        city={this.state.city} 
+       />     
     </>
   )
 }

@@ -52,8 +52,7 @@ class App extends React.Component {
   handleWeather = async () => {
   try {    
    
-    let cityWeather = await axios.get(`${process.env.REACT_APP_SERVER_LIVE}/weather?lat=${this.state.cityData.lat}&lon=${this.state.cityData.lon}`);
-    // console.log(cityWeather);
+    let cityWeather = await axios.get(`${process.env.REACT_APP_SERVER}/weather?lat=${this.state.cityData.lat}&lon=${this.state.cityData.lon}`);
     this.setState({
       cityWeather: cityWeather.data,
     })
@@ -69,8 +68,7 @@ class App extends React.Component {
   handleMovie = async () => {
     try {             
       
-      let cityMovie = await axios.get(`${process.env.REACT_APP_SERVER_LIVE}/movies?searchQuery=${this.state.city}`);
-      // console.log(cityMovie);
+      let cityMovie = await axios.get(`${process.env.REACT_APP_SERVER}/movies?searchQuery=${this.state.city}`);
       this.setState({
         cityMovie: cityMovie.data,
       })
@@ -87,7 +85,6 @@ class App extends React.Component {
 
 render(){
   let cityMap = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}&zoom=14`;
-  // console.log("app state" ,this.state);
   return(
     <>
       <h1> City Explorer 4</h1>

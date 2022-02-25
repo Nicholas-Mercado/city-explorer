@@ -1,13 +1,11 @@
 import React from 'react';
 import axios from 'axios';
-import Card from 'react-bootstrap/Card';
 import "./App.css"
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import Map from './Map';
 import Weather from './Weather';
-import Movie from './Movie';
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import Input from './Input';
+import Movies from './Movies';
+import Header from './Header';
 
 class App extends React.Component {
   constructor(props){
@@ -53,7 +51,6 @@ class App extends React.Component {
   try {    
    
     let cityWeather = await axios.get(`${process.env.REACT_APP_SERVER_LIVE}/weather?lat=${this.state.cityData.lat}&lon=${this.state.cityData.lon}`);
-    // console.log(cityWeather);
     this.setState({
       cityWeather: cityWeather.data,
     })
@@ -70,7 +67,6 @@ class App extends React.Component {
     try {             
       
       let cityMovie = await axios.get(`${process.env.REACT_APP_SERVER_LIVE}/movies?searchQuery=${this.state.city}`);
-      // console.log(cityMovie);
       this.setState({
         cityMovie: cityMovie.data,
       })
@@ -86,58 +82,27 @@ class App extends React.Component {
 
 
 render(){
-  let cityMap = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}&zoom=14`;
-  // console.log("app state" ,this.state);
+  
   return(
     <>
-      <h1> City Explorer 4</h1>
-      <Form onSubmit={this.getCityData}>
-        <Form.Label>
-          <Form.Control type="text" onInput={this.handleCityInput}/>
-        </Form.Label>
-          <Button type="submit">Explore!</Button>
-      </Form>
-      {
-        this.state.error 
-        ? 
-        
-        <p>{this.state.errorMessage}</p>
-        :
-       <Card style={{ width: '36rem' }}>
-          {
-            this.state.cityData.lat 
-            ?
-            <Card.Img variant="top" src= {cityMap} />
-            :
-            <Card.Img/>
-          }
-          <Card.Body>
-            <Card.Title>{this.state.cityData.display_name}</Card.Title>
-            <Card.Text>{this.state.cityData.lon}</Card.Text>
-            <Card.Text>{this.state.cityData.lat}</Card.Text>
-        </Card.Body>
-      </Card>
-      }
-            <Row xs={1} sm={2} md={3} lg={3} className="mt-5">
-              {this.state.cityWeather.map((cityWeather, index) => (
-                <Col key={index}>
-                  <Weather 
-                    cityWeather={cityWeather}
-                    city={this.state.city}
-                    />
-                </Col>
-              ))}
-            </Row> 
-            <Row xs={1} sm={2} md={3} lg={3} className="mt-5">
-              {this.state.cityMovie.map((cityMovie, index) => (
-                <Col key={index}>
-                  <Movie 
-                    cityMovie={cityMovie}
-                    city={this.state.city}
-                    />
-                </Col>
-              ))}
-            </Row> 
+      <Header/>
+      <Input
+        getCityData={this.getCityData}
+        handleCityInput={this.handleCityInput}
+      />
+      <Map
+        error={this.state.error}
+        errorMessage = {this.state.errorMessage}
+        cityData = {this.state.cityData}
+      />
+       <Weather
+        cityWeather = {this.state.cityWeather}
+        city={this.state.city}
+       />      
+       <Movies
+        cityMovie ={this.state.cityMovie}
+        city={this.state.city} 
+       />     
     </>
   )
 }

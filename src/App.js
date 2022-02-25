@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import "./App.css"
 import Map from './Map';
-import WeatherDay from './WeatherDay';
+import Weather from './Weather';
 import Input from './Input';
 import Movie from './Movie';
 import Header from './Header';
@@ -97,7 +97,7 @@ render(){
         errorMessage = {this.state.errorMessage}
         cityData = {this.state.cityData}
       />
-       <WeatherDay
+       <Weather
         cityWeather = {this.state.cityWeather}
         city={this.state.city}
        />      

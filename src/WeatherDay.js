@@ -1,24 +1,23 @@
 import React from 'react';
-import Weather from './Weather';
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import Card from 'react-bootstrap/Card';
+
+
+
 
 class WeatherDay extends React.Component{
-  render(){
-    return(
-      <>
-      <Row xs={1} sm={2} md={3} lg={3} className="mt-5">
-        {this.props.cityWeather.map((cityWeather, index) => (
-          <Col key={index}>
-            <Weather 
-              cityWeather={cityWeather}
-              city={this.props.city}
-             />
-          </Col>
-              ))}
-        </Row>
-      </>
-    )
-  };
-  }
+render(){
+  return(
+    <>
+      <Card>
+        <Card.Body>
+          <Card.Text>{this.props.cityWeather.date}</Card.Text>
+          <Card.Text>{this.props.cityWeather.description}</Card.Text>
+          <Card.Text>{this.props.cityWeather.low}</Card.Text>
+          <Card.Text>{this.props.cityWeather.high}</Card.Text>
+        </Card.Body>    
+      </Card>
+    </>
+  )
+};
+}
 export default WeatherDay;

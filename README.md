@@ -95,6 +95,17 @@ Finish time: 430
 
 Actual time needed to complete: 1/2 hrs
 
+### Name of feature: Refactor
+
+Estimate of time needed to complete: 1 hr
+
+Start time: 615
+
+Finish time: 9
+
+Actual time needed to complete: 245
+
+
 ## Credit and Collaborations
 
 [Node JS Docs](https://docs.npmjs.com/)

@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Weather from './Weather';
 import Movie from './Movie';
+import Header from './Header';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
@@ -87,7 +88,7 @@ render(){
   let cityMap = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}&zoom=14`;
   return(
     <>
-      <h1> City Explorer 4</h1>
+      <Header/>
       <Form onSubmit={this.getCityData}>
         <Form.Label>
           <Form.Control type="text" onInput={this.handleCityInput}/>

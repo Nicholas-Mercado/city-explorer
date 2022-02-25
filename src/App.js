@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import Map from './Map';
 import "./App.css"
-import Weather from './Weather';
+import Map from './Map';
+import WeatherDay from './WeatherDay';
 import Input from './Input';
 import Movie from './Movie';
 import Header from './Header';
@@ -97,16 +97,10 @@ render(){
         errorMessage = {this.state.errorMessage}
         cityData = {this.state.cityData}
       />
-            <Row xs={1} sm={2} md={3} lg={3} className="mt-5">
-              {this.state.cityWeather.map((cityWeather, index) => (
-                <Col key={index}>
-                  <Weather 
-                    cityWeather={cityWeather}
-                    city={this.state.city}
-                    />
-                </Col>
-              ))}
-            </Row> 
+       <WeatherDay
+        cityWeather = {this.state.cityWeather}
+        city={this.state.city}
+       />      
             <Row xs={1} sm={2} md={3} lg={3} className="mt-5">
               {this.state.cityMovie.map((cityMovie, index) => (
                 <Col key={index}>

@@ -2,6 +2,7 @@ import React from 'react';
 import Movie from './Movie';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import "./Movies.css"
 
 class Movies extends React.Component{
   render(){

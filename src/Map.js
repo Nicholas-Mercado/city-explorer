@@ -12,7 +12,7 @@ class Map extends React.Component{
         
         <p>{this.props.errorMessage}</p>
         :
-       <Card style={{ width: '36rem' }}>
+       <Card style={{ width: '34rem' }}>
           {
             this.props.cityData.lat 
             ?

@@ -2,9 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import "./App.css"
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import Weather from './Weather';
+import Input from './Input';
 import Movie from './Movie';
 import Header from './Header';
 import Row from "react-bootstrap/Row";
@@ -89,12 +88,10 @@ render(){
   return(
     <>
       <Header/>
-      <Form onSubmit={this.getCityData}>
-        <Form.Label>
-          <Form.Control type="text" onInput={this.handleCityInput}/>
-        </Form.Label>
-          <Button type="submit">Explore!</Button>
-      </Form>
+      <Input
+        getCityData={this.getCityData}
+        handleCityInput={this.handleCityInput}
+      />
       {
         this.state.error 
         ? 

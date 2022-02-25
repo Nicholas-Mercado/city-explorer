@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import Card from 'react-bootstrap/Card';
+import Map from './Map';
 import "./App.css"
 import Weather from './Weather';
 import Input from './Input';
@@ -84,7 +84,7 @@ class App extends React.Component {
 
 
 render(){
-  let cityMap = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}&zoom=14`;
+  
   return(
     <>
       <Header/>
@@ -92,27 +92,11 @@ render(){
         getCityData={this.getCityData}
         handleCityInput={this.handleCityInput}
       />
-      {
-        this.state.error 
-        ? 
-        
-        <p>{this.state.errorMessage}</p>
-        :
-       <Card style={{ width: '36rem' }}>
-          {
-            this.state.cityData.lat 
-            ?
-            <Card.Img variant="top" src= {cityMap} />
-            :
-            <Card.Img/>
-          }
-          <Card.Body>
-            <Card.Title>{this.state.cityData.display_name}</Card.Title>
-            <Card.Text>{this.state.cityData.lon}</Card.Text>
-            <Card.Text>{this.state.cityData.lat}</Card.Text>
-        </Card.Body>
-      </Card>
-      }
+      <Map
+        error={this.state.error}
+        errorMessage = {this.state.errorMessage}
+        cityData = {this.state.cityData}
+      />
             <Row xs={1} sm={2} md={3} lg={3} className="mt-5">
               {this.state.cityWeather.map((cityWeather, index) => (
                 <Col key={index}>

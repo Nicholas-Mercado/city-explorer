@@ -54,6 +54,7 @@ class App extends React.Component {
     this.setState({
       cityWeather: cityWeather.data,
     })
+    console.log(cityWeather);
     } catch (error) {
       this.setState({
         error:true,
@@ -79,10 +80,9 @@ class App extends React.Component {
   
       }
     }
-
-
+    
 render(){
-  
+
   return(
     <>
       <Header/>

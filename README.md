@@ -105,6 +105,17 @@ Finish time: 9
 
 Actual time needed to complete: 245
 
+## Name of feature: Performance
+
+Estimate of time needed to complete: 4h
+
+Start time: 2
+
+Finish time: 5
+
+Actual time needed to complete: 3
+
+
 
 ## Credit and Collaborations
 
@@ -128,3 +139,5 @@ Matt Rangel
 ![WRRC 08](/img/WRRC_lab_08.JPG)
 
 ![WRRC 09](/img/wrrc_09.JPG)
+
+![WRRC 10](/img/wrrc_10.jpg)
